@@ -1,44 +1,6 @@
 # InternIntelligence Login & Register Web Application
 
-This project is a responsive Login & Register web application developed as my first project during my internship at [Company Name]. The application is fully integrated with Firebase Database, allowing users to register with their personal details and securely log in using those credentials.
-
-## Features
-
-- **Responsive Design**: The application is fully responsive, ensuring an optimal user experience across different devices and screen sizes.
-- **Firebase Integration**: All user data is securely stored in Firebase Database.
-- **User Registration**: New users can register by providing their personal details.
-- **User Login**: Registered users can log in using their credentials, which are validated against the database.
-- **Secure Authentication**: Ensures user data security and safe login functionality.
-- **User-Friendly Interface**: A clean and intuitive design for an enhanced user experience.
-
-## Technologies Used
-
-- **HTML5 & CSS3**: For structuring and styling the web application.
-- **JavaScript**: For client-side interactivity and functionality.
-- **Firebase Authentication**: For handling user login and registration.
-- **Firebase Realtime Database**: For storing and managing user information.
-- **Responsive Design Techniques**: To ensure the application works seamlessly on various devices.
-
-## Project Highlights
-
-- My first project completed during my internship at [Company Name].
-- Successfully implemented a functional user authentication system.
-- Integrated Firebase services, including Authentication and Realtime Database.
-- Learned and applied responsive design principles to enhance user experience.
-
-## Installation & Setup
-
-1. Clone the repository to your local machine:
-   git clone https://github.com/ruhlanrzayev/InternIntelligence_LoginPage.git
-
-Tabii ki! İşte README.md dosyan için bir içerik:
-
-markdown
-Copy
-Edit
-# InternIntelligence Login & Register Web Application
-
-This project is a responsive Login & Register web application developed as my first project during my internship at [Company Name]. The application is fully integrated with Firebase Database, allowing users to register with their personal details and securely log in using those credentials.
+This project is a responsive Login & Register web application developed as my first project during my internship at [Intern Intelligence](https://www.linkedin.com/company/intern-intelligence/). The application is fully integrated with Firebase Database, allowing users to register with their personal details and securely log in using those credentials.
 
 ## Features
 
@@ -70,6 +32,7 @@ This project is a responsive Login & Register web application developed as my fi
    git clone https://github.com/ruhlanrzayev/InternIntelligence_LoginPage.git
    
 2. Navigate to the project directory:
+   
   cd InternIntelligence_LoginPage
 
 3. Open the project in your favorite code editor.
