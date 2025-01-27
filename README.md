@@ -21,7 +21,7 @@ This project is a responsive Login & Register web application developed as my fi
 
 ## Project Highlights
 
-- My first project completed during my internship at [Company Name].
+- My first project completed during my internship at [Intern Intelligence](https://www.linkedin.com/company/intern-intelligence/).
 - Successfully implemented a functional user authentication system.
 - Integrated Firebase services, including Authentication and Realtime Database.
 - Learned and applied responsive design principles to enhance user experience.
