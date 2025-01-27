@@ -39,7 +39,7 @@
             <form class="form-container loginContainer active" id="loginContainer">
                 <h1>Log in to your account</h1>
                 <div class="inputBox">
-                    <input type="email" id="loginEmail" placeholder="Your Email" required="required">
+                    <input type="text" id="loginEmail" placeholder="Your Username" required="required">
                     <i class="fas fa-envelope"></i>
                 </div>
                 <div class="inputBox">
@@ -77,6 +77,69 @@
     </div>
 
     <script src="script.js"></script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyDUGTCgGS-bUlo0-q-4yGls5vgsuCn9Keo",
+        authDomain: "internintelligenceloginpage.firebaseapp.com",
+        projectId: "internintelligenceloginpage",
+        storageBucket: "internintelligenceloginpage.firebasestorage.app",
+        messagingSenderId: "649603952250",
+        appId: "1:649603952250:web:868cbdca5e51bc257255c3",
+        measurementId: "G-XVMZ4KJ08S"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+
+        document.getElementById("signUpButton").addEventListener("click", function(e) {
+            e.preventDefault();
+            set(ref(db, 'user/' + document.getElementById("registerName").value),
+            {
+
+            username: document.getElementById("registerName").value,
+            email: document.getElementById("registerEmail").value,
+            password: document.getElementById("registerPassword").value
+
+            });
+            alert('Registration Successful!');
+            registerName.value = '';
+            registerEmail.value = '';
+            registerPassword.value = '';
+        } )
+
+        document.getElementById("signInButton").addEventListener("click", function(e) {
+            e.preventDefault();
+            const dbRef = ref(db);
+            get(child(dbRef, `user/${document.getElementById("loginEmail").value.split('@')[0]}`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+                if (userData.password === document.getElementById("loginPassword").value) {
+                alert('Login Successful!');    
+                loginEmail.value = '';
+                loginPassword.value = '';
+                } else {
+                alert('Incorrect Password!');
+                loginPassword.value = '';
+                }
+            } else {
+                alert('User does not exist!');
+                loginEmail.value = '';
+                loginPassword.value = '';
+            }
+            }).catch((error) => {
+            console.error(error);
+            alert('An error occurred!');
+            });
+        });
+
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </body>
 </html>
