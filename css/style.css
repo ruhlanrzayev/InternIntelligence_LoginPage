@@ -181,6 +181,15 @@ body {
         background: #5b7b85;
     }
 
+    #forgotPassword {
+        color: #007bff;
+        transition: .3s ease-in-out;
+    }
+
+    #forgotPassword:hover {
+        text-decoration: underline;
+    }
+
     p {
         display: block;
         text-align: center;
@@ -190,6 +199,7 @@ body {
 
         a {
             color: #007bff;
+            transition: .3s ease-in-out;
         }
 
         a:hover {

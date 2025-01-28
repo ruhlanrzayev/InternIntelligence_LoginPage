@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/responsive.css" />
         <link rel="stylesheet" href="css/font.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     </head>
 <body>
 
@@ -48,6 +49,7 @@
                 </div>
                 <div class="alt-section">
                     <input id="signInButton" type="submit" value="Sign In"></input>
+                    <a href="#" id="forgotPassword">Forgot password?</a>
                     <p>or don't have an account yet?</p>
                     <p>then, <a href="#" onclick="signUp()">sign up</a>!</p>
                 </div>
@@ -55,7 +57,7 @@
             <form class="form-container registerContainer" id="registerContainer">
                 <h1>Create Account</h1>
                 <div class="inputBox">
-                    <input type="text" id="registerName" placeholder="Your Full Name" required="required">
+                    <input type="text" id="registerName" placeholder="Your Username" required="required">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="inputBox">
@@ -80,6 +82,7 @@
     <script type="module">
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
         import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
         const firebaseConfig = {
@@ -93,11 +96,15 @@
         };
 
         const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
+        const db = getDatabase(app);    
 
 
         document.getElementById("signUpButton").addEventListener("click", function(e) {
             e.preventDefault();
+            if(registerEmail.value == '' || registerPassword.value == '' || registerName.value == '') {
+                alert("Please fill in all the blanks.");
+            } else {
+                
             set(ref(db, 'user/' + document.getElementById("registerName").value),
             {
 
@@ -110,11 +117,18 @@
             registerName.value = '';
             registerEmail.value = '';
             registerPassword.value = '';
+
+            }
         } )
 
         document.getElementById("signInButton").addEventListener("click", function(e) {
             e.preventDefault();
             const dbRef = ref(db);
+
+            if(loginEmail.value == "" && loginPassword.value == "") {
+                alert("Please fill in all the blanks.");
+            } else {
+
             get(child(dbRef, `user/${document.getElementById("loginEmail").value.split('@')[0]}`)).then((snapshot) => {
             if (snapshot.exists()) {
                 const userData = snapshot.val();
@@ -135,6 +149,43 @@
             console.error(error);
             alert('An error occurred!');
             });
+
+            }
+        }); 
+
+
+        document.getElementById('forgotPassword').addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const auth = getAuth();
+            const username = document.getElementById('loginEmail').value;
+            const dbRef = ref(db);
+
+            if(username == "") {
+                alert("Please enter your username to reset your password!");
+            } else {
+                get(child(dbRef, `user/${username}`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                const userData = snapshot.val();
+                const email = userData.email;
+                sendPasswordResetEmail(auth, email)
+                .then(() => {
+                alert('Reset password link sent to your email.');
+                })
+                .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+                alert('An error occurred while sending the reset link.');
+                });
+                } else {
+                alert('Username not found in our database.');
+                }
+                }).catch((error) => {
+                console.error(error);
+                alert('An error occurred while checking the username.');
+                });
+            }
         });
 
 
