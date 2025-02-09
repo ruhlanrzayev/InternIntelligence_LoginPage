@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh; 
-    background: url("/assets/backgroundwp.jpg") center/cover no-repeat;
+    background-image: linear-gradient(to right, #a7d9e9, #a2c9d6, #9ed0e1, #a7d9e9, #a7d9e9, #a7d9e9 )
 }
 
 .nav {
